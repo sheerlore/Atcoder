@@ -18,6 +18,6 @@ int main() {
   }
 
   if (can) cout << "Yes" << endl;
-  else cout << "N" << endl;
+  else cout << "No" << endl;
   return 0;
 }
