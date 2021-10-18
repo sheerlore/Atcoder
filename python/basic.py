@@ -2,6 +2,7 @@
 
 from sys import stdin
 from copy import deepcopy
+import string
 
 # a = stdin.readline().rstrip()
 # print(a.upper())
@@ -168,3 +169,146 @@ from copy import deepcopy
 
 # print(list(set(a) | set(b)))
 # print(list(set(a) & set(b)))
+
+# 文字列操作
+# リストと同じ操作
+# a = 'ABC' + 'DEF'
+# print(a)
+# b = 'ABC' * 3
+# print(b)
+# c = 'ABCDEF'
+# print('A' in c)
+# print('a' in c)
+
+# 置換
+# a = 'abc(de)fg'
+# print(a.replace('(', '[').replace(')', ']'))
+
+# b = 'aBCdEfg'
+# print(b.upper())
+# print(b.lower())
+
+# 文字列の反転
+# s = 'ABCDEFG'
+# print(s[::-1])
+
+# 文字列定数
+# print(string.ascii_lowercase)
+# print(string.ascii_uppercase)
+# print(string.ascii_letters)
+# print(string.digits)
+# print(string.hexdigits)
+
+# 正規表現
+# import re
+# text = '<h1 style="width: 100px; height: 200px;">'
+# result = re.search(r'width: (\d*)px; height: (\d*)px;', text)
+# print(result)
+
+# if result:
+#     print(result.group(0))
+#     print(result.group(1))
+#     print(result.group(2))
+#     print(result.groups())
+# else:
+#     print('no match')
+
+# 累積和 accumulate
+from itertools import accumulate
+# a = list(range(1, 11))
+# # itertoolsの戻り値はイテレータとなっているので必要に応じてlist化する
+# b = list(accumulate(a))
+# print(a)
+# print(b)
+
+from itertools import dropwhile, takewhile
+# a = [3, 6, 1, 7, 2, 5]
+
+# # 1が出るまでを除外する
+# b = dropwhile(lambda x: x != 1, a)
+# print(list(b))
+
+# # 1が出るまでを繰り返す
+# c = takewhile(lambda x: x != 1, a)
+# print(list(c))
+
+
+from itertools import groupby
+# a = [1, 1, 2, 3, 3, 3, 1, 2, 2]
+
+# print(list(groupby(a)))
+# for key, value in groupby(a):
+#     print(key, list(value))
+
+# b = [1, 3, 2, 4, 3, 1, 1, 2, 4]
+# for key, value in groupby(b, key=lambda x: x % 2):
+#     print(key, list(value))
+
+# c = [1, 1, 2, 3, 3, 3, 1, 2, 2]
+# d = sorted(c)
+# for key, value in groupby(d):
+#     print(key, list(value))
+
+
+from collections import Counter
+# a = [1, 1, 2, 3, 3, 3, 1, 2, 2]
+# counter = Counter(a)
+
+# for key, value in counter.items():
+#     print(key, value)
+
+# for文のelse
+# for i in range(5):
+#     if i == 5:
+#         break;
+# else:
+#     print('@@@')
+
+# for i in range(10):
+#     if i == 5:
+#         break;
+# else:
+#     print("$$$")
+
+# 2進数や16進数
+# print(bin(255)) # 10 -> 2
+# print(hex(255)) # 10 -> 16
+# print(int('0b11111111', 2)) # 2 -> 10
+# print(int('0xff', 16)) # 16 -> 10
+
+# 順列数と組み合わせ数
+# from math import factorial
+
+# def permutations_count(n, r):
+#     # 順列
+#     return factorial(n) // factorial(n - r)
+
+# def combinations_count(n, r):
+#     # 組み合わせ
+#     return factorial(n) // (factorial(n - r) * factorial(r))
+
+# print(permutations_count(5, 3))
+# print(combinations_count(5, 2))
+
+# メモ化
+# from functools import lru_cache
+
+# @lru_cache(maxsize=None)
+# def fibo(n):
+#     if n <= 0:
+#         return 0
+#     elif n == 1:
+#         return 1
+#     else:
+#         return fibo(n - 1) + fibo(n - 2)
+
+# print(fibo(35))
+
+# stdinをファイルに置き換える
+'''
+入力データをファイルに保存しておいてリダイレクトでstdinにデータを流し込む
+ファイルをopenした場戻り値でstdinを上書きすることで解決する
+'''
+from sys import stdin
+stdin = open('sample.txt')
+print(stdin.readline().rstrip())
